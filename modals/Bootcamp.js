@@ -10,7 +10,7 @@ const BootcampSchema = new mongoose.Schema({
     },
 
     slug: String,
-    discription:{
+    description:{
         type: String,
         required: [true,"Please add a discription"],
         maxlength:[500,"Discription can not be more than 500 characters"]
@@ -38,11 +38,11 @@ const BootcampSchema = new mongoose.Schema({
         type: {
             type: String, // Don't do `{ location: { type: String } }`
             enum: ['Point'], // 'location.type' must be 'Point'
-            required: true
+            
           },
           coordinates: {
             type: [Number],
-            required: true,
+            
             index:'2dsphere'
           },
           formattedAddress: String,
@@ -57,8 +57,8 @@ const BootcampSchema = new mongoose.Schema({
         type:[String],
         required:true,
         enum: [
-            "Web Devlopment",
-            "Mobile Devlopment",
+            "Web Development",
+            "Mobile Development",
             "UI/UX",
             "Data Science",
             "Business",
@@ -68,7 +68,7 @@ const BootcampSchema = new mongoose.Schema({
     averageRating: {
         type: Number,
         min:[1,"Rating must be at least 1"],
-        max:[10,:="Rating must can not more than 10"]
+        max:[10,"Rating must can not more than 10"]
     },
     averageCost: Number,
     photo: {

@@ -2,6 +2,8 @@
 // @Rout     GET/api/v1/bootcamps
 // @access   Public
 
+const Bootcamp = require("../modals/Bootcamp")
+
 exports.getbootcamps = (req,res,next) => {
     res.send({success: true,msg:'show all bootcamp'})    
 
@@ -20,8 +22,23 @@ exports.getbootcamp = (req,res,next) => {
 // @Rout     POST/api/v1/bootcamps
 // @access   Public
 
-exports.createbootcamp = (req,res,next) => {
-    res.status(200).json({success: true,msg:'create new bootcamp'})
+exports.createbootcamp = async (req,res,next) => {
+    console.log(req.body)
+    try {
+        const bootcamp = await Bootcamp.create(req.body)
+        res.status(201)
+        .json(
+            {success: true,
+            msg:'create new bootcamp',
+            data : bootcamp
+        })
+    } catch (error) {
+        res.status(400).json({
+            success:false
+        })
+    }
+
+  
 
 }
 
